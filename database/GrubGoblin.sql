@@ -3,7 +3,7 @@
 -- Contains tables for available deals based on establishment and days of the week.
 START TRANSACTION;
 
-DROP TABLE IF EXISTS place, deal, deal_availability, availability, reviews CASCADE;
+DROP TABLE IF EXISTS place, deal, deal_availability, availability, review CASCADE;
 
  CREATE TABLE place (
     place_id SERIAL PRIMARY KEY,
@@ -34,8 +34,8 @@ DROP TABLE IF EXISTS place, deal, deal_availability, availability, reviews CASCA
       CONSTRAINT pk_deal_availability PRIMARY KEY(deal_id, availability_id)
    );
 
- CREATE TABLE reviews (
-    rating_id SERIAL PRIMARY KEY,
+ CREATE TABLE review (
+    review_id SERIAL PRIMARY KEY,
     deal_id INT REFERENCES deal ON DELETE CASCADE,
     stars DECIMAL(2,1),
     review_description VARCHAR(200)
@@ -102,7 +102,7 @@ INSERT INTO deal_availability (deal_id, availability_id)
     ( 4, 10),
     ( 5, 11);
 
-INSERT INTO reviews ( deal_id, stars,review_description)
+INSERT INTO review ( deal_id, stars,review_description)
     VALUES
     (1, 3.9, 'The happy hour drinks were ok, their full price cocktails are much better!'),
     (2, 4.5, 'Solid cocktails and friendly service. Wish it was a dollar or two less. The charcuterie is worth getting.'),

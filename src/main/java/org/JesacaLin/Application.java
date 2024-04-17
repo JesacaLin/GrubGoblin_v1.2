@@ -3,6 +3,7 @@ package org.JesacaLin;
 import org.JesacaLin.daos.AvailabilityDAO;
 import org.JesacaLin.daos.DealDAO;
 import org.JesacaLin.daos.PlaceDAO;
+import org.JesacaLin.daos.ReviewDAO;
 import org.JesacaLin.models.Deal;
 import org.JesacaLin.models.Place;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -14,6 +15,7 @@ public class Application {
     public static PlaceDAO placeDAO;
     public static DealDAO dealDAO;
     public static AvailabilityDAO availabilityDAO;
+    public static ReviewDAO reviewDAO;
     public static void main(String[] args) {
         /**
          * Application is the class that launches Grub Goblin v3 by creating
@@ -28,6 +30,7 @@ public class Application {
         placeDAO = new PlaceDAO(basicDataSource);
         dealDAO = new DealDAO(basicDataSource);
         availabilityDAO = new AvailabilityDAO(basicDataSource);
+        reviewDAO = new ReviewDAO(basicDataSource);
 
         for (Deal d : dealDAO.getAllDeals()) {
             System.out.println(d);

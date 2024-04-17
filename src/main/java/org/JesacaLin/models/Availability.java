@@ -22,7 +22,7 @@ public class Availability {
         return availabilityId;
     }
 
-    public void setAvailabilityId(int availabilityId) {
+    public void setAvailabilityId(String unableToSetAvailabilityId, int availabilityId) {
         this.availabilityId = availabilityId;
     }
 
@@ -30,7 +30,7 @@ public class Availability {
         return dayOfWeek;
     }
 
-    public void setDayOfWeek(int dayOfWeek) {
+    public void setDayOfWeek(String s, int dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
     }
 

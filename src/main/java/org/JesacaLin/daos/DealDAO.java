@@ -93,8 +93,6 @@ public class DealDAO {
         deal.setPlaceId("Unable to set place id", rowSet.getInt("place_id"));
         deal.setTypeOfDeal(rowSet.getString("type_of_deal"));
         deal.setDealDescription((rowSet.getString("deal_description")));
-
-
         return deal;
     }
 }

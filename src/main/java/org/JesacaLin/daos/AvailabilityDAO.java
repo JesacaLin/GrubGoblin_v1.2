@@ -2,7 +2,6 @@ package org.JesacaLin.daos;
 
 import org.JesacaLin.exception.DaoException;
 import org.JesacaLin.models.Availability;
-import org.JesacaLin.models.Deal;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
@@ -89,8 +88,8 @@ public class AvailabilityDAO {
 
     public Availability mapRowtoAvailability (SqlRowSet rowSet) {
         Availability availability = new Availability();
-        availability.setAvailabilityId(rowSet.getInt("availability_id"));
-        availability.setDayOfWeek(rowSet.getInt("day_of_week"));
+        availability.setAvailabilityId("Unable to set availability id", rowSet.getInt("availability_id"));
+        availability.setDayOfWeek("Unable to set day of the week", rowSet.getInt("day_of_week"));
         Time sqlStartTime = rowSet.getTime("start_time");
         if (sqlStartTime != null) {
             availability.setStartTime(sqlStartTime.toLocalTime());
