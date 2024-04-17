@@ -1,13 +1,13 @@
 package org.JesacaLin.models;
 
-public class deal {
+public class Deal {
     private int dealId;
     private int placeId;
     private String typeOfDeal;
     private String dealDescription;
-    public deal() {
+    public Deal() {
     }
-    public deal(int dealId, int placeId, String typeOfDeal, String dealDescription) {
+    public Deal(int dealId, int placeId, String typeOfDeal, String dealDescription) {
         this.dealId = dealId;
         this.placeId = placeId;
         this.typeOfDeal = typeOfDeal;
@@ -18,7 +18,7 @@ public class deal {
         return dealId;
     }
 
-    public void setDealId(int dealId) {
+    public void setDealId(String unableToSetDealId, int dealId) {
         this.dealId = dealId;
     }
 
@@ -26,7 +26,7 @@ public class deal {
         return placeId;
     }
 
-    public void setPlaceId(int placeId) {
+    public void setPlaceId(String unableToSetPlaceId, int placeId) {
         this.placeId = placeId;
     }
 
@@ -44,5 +44,14 @@ public class deal {
 
     public void setDealDescription(String dealDescription) {
         this.dealDescription = dealDescription;
+    }
+    @Override
+    public String toString() {
+        return "Deal {" +
+                " ID = " + dealId +
+                ", PLACE ID = " + placeId +
+                ", TYPE OF DEAL = " + typeOfDeal +
+                ", DEAL DESCRIPTION = " + dealDescription +
+                " }";
     }
 }

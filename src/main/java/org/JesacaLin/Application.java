@@ -1,11 +1,19 @@
 package org.JesacaLin;
 
+import org.JesacaLin.daos.AvailabilityDAO;
+import org.JesacaLin.daos.DealDAO;
+import org.JesacaLin.daos.PlaceDAO;
+import org.JesacaLin.models.Deal;
+import org.JesacaLin.models.Place;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 public class Application {
     public static BasicDataSource basicDataSource;
+    public static PlaceDAO placeDAO;
+    public static DealDAO dealDAO;
+    public static AvailabilityDAO availabilityDAO;
     public static void main(String[] args) {
         /**
          * Application is the class that launches Grub Goblin v3 by creating
@@ -17,10 +25,12 @@ public class Application {
         basicDataSource.setPassword("postgres1");
         //Controller expects the DAOs it needs to be "injected" in the constructor.
         //Add new DAO here
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(basicDataSource);
-        SqlRowSet result = jdbcTemplate.queryForRowSet("select * from place");
-        while (result.next()) {
-            System.out.println(result.getString("place_name"));
+        placeDAO = new PlaceDAO(basicDataSource);
+        dealDAO = new DealDAO(basicDataSource);
+        availabilityDAO = new AvailabilityDAO(basicDataSource);
+
+        for (Deal d : dealDAO.getAllDeals()) {
+            System.out.println(d);
         }
 
     }

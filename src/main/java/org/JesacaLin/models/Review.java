@@ -1,15 +1,15 @@
 package org.JesacaLin.models;
 
-public class review {
+public class Review {
     private int ratingId;
     private int dealId;
     private double stars;
     private String reviewDescription;
 
-    public review() {
+    public Review() {
     }
 
-    public review(int ratingId, int dealId, double stars, String reviewDescription) {
+    public Review(int ratingId, int dealId, double stars, String reviewDescription) {
         this.ratingId = ratingId;
         this.dealId = dealId;
         this.stars = stars;
@@ -46,5 +46,15 @@ public class review {
 
     public void setReviewDescription(String reviewDescription) {
         this.reviewDescription = reviewDescription;
+    }
+
+    @Override
+    public String toString() {
+        return "Reviews {" +
+                " ID = " + ratingId +
+                ", DEAL ID = " + dealId +
+                ", STARS = " + stars +
+                ", REVIEW DESCRIPTION = " + reviewDescription +
+                " }";
     }
 }

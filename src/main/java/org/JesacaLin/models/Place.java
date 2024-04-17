@@ -1,6 +1,6 @@
 package org.JesacaLin.models;
 
-public class place {
+public class Place {
     private int placeId;
     private String placeName;
     private String address;
@@ -8,10 +8,10 @@ public class place {
     private double longitude;
     private double googleRating;
 
-    public place() {
+    public Place() {
     }
 
-    public place(int placeId, String placeName, String address, double latitude, double longitude, double googleRating) {
+    public Place(int placeId, String placeName, String address, double latitude, double longitude, double googleRating) {
         this.placeId = placeId;
         this.placeName = placeName;
         this.address = address;
@@ -24,7 +24,7 @@ public class place {
         return placeId;
     }
 
-    public void setPlaceId(int placeId) {
+    public void setPlaceId(String errorMessage, int placeId) {
         this.placeId = placeId;
     }
 
@@ -48,7 +48,7 @@ public class place {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
+    public void setLatitude(String unableToSetLatitude, double latitude) {
         this.latitude = latitude;
     }
 
@@ -56,7 +56,7 @@ public class place {
         return longitude;
     }
 
-    public void setLongitude(double longitude) {
+    public void setLongitude(String unableToSetLongitude, double longitude) {
         this.longitude = longitude;
     }
 
@@ -64,18 +64,19 @@ public class place {
         return googleRating;
     }
 
-    public void setGoogleRating(double googleRating) {
+    public void setGoogleRating(String unableToSetGoogleRating, double googleRating) {
         this.googleRating = googleRating;
     }
 
     @Override
     public String toString() {
         return "Place {" +
-                "id = " + placeId +
-                ", name = " + placeName +
-                ", latitude = " + latitude +
-                ", longitude = " + longitude +
-                ", Google rating = " + googleRating +
-                "}";
+                " ID = " + placeId +
+                ", NAME = " + placeName +
+                ", ADDRESS = " + address +
+                ", LATITUDE = " + latitude +
+                ", LONGITUDE = " + longitude +
+                ", GOOGLE RATING = " + googleRating +
+                " }";
     }
 }

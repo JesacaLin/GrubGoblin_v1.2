@@ -16,7 +16,7 @@ DROP TABLE IF EXISTS place, deal, deal_availability, availability, reviews CASCA
 
  CREATE TABLE deal (
     deal_id SERIAL PRIMARY KEY,
-    place_id INT REFERENCES place NOT NULL,
+    place_id INT REFERENCES place ON DELETE CASCADE,
     type_of_deal VARCHAR(20),
     deal_description VARCHAR(150) NOT NULL
  );
@@ -29,14 +29,14 @@ DROP TABLE IF EXISTS place, deal, deal_availability, availability, reviews CASCA
  );
 
  CREATE TABLE deal_availability (
-      deal_id INT REFERENCES deal NOT NULL,
-      availability_id INT REFERENCES availability NOT NULL,
+      deal_id INT REFERENCES deal ON DELETE CASCADE,
+      availability_id INT REFERENCES availability ON DELETE CASCADE,
       CONSTRAINT pk_deal_availability PRIMARY KEY(deal_id, availability_id)
    );
 
  CREATE TABLE reviews (
     rating_id SERIAL PRIMARY KEY,
-    deal_id INT REFERENCES deal,
+    deal_id INT REFERENCES deal ON DELETE CASCADE,
     stars DECIMAL(2,1),
     review_description VARCHAR(200)
  );

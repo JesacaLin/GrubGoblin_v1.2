@@ -2,16 +2,16 @@ package org.JesacaLin.models;
 
 import java.time.LocalTime;
 
-public class availability {
+public class Availability {
     private int availabilityId;
     private int dayOfWeek;
     private LocalTime startTime;
     private LocalTime endTime;
 
-    public availability() {
+    public Availability() {
     }
 
-    public availability(int availabilityId, int dayOfWeek, LocalTime startTime, LocalTime endTime) {
+    public Availability(int availabilityId, int dayOfWeek, LocalTime startTime, LocalTime endTime) {
         this.availabilityId = availabilityId;
         this.dayOfWeek = dayOfWeek;
         this.startTime = startTime;
@@ -48,5 +48,15 @@ public class availability {
 
     public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Availability {" +
+                " ID = " + availabilityId +
+                ", DAY OF THE WEEK = " + dayOfWeek +
+                ", START TIME = " + startTime +
+                ", END TIME = " + endTime +
+                " }";
     }
 }
