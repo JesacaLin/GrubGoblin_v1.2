@@ -41,12 +41,15 @@ public class AvailabilityDAO {
         }
         return availabilities;
     }
-    public Availability createAvailability(Availability availability) {
+    public Availability createAvailability(Availability availability, int dealId) {
         Availability newAvailability = null;
         String sql = "INSERT INTO availability (day_of_week, start_time, end_time)" + "VALUES (?, ?, ? ) RETURNING availability_id";
         try {
             int availabilityId = jdbcTemplate.queryForObject(sql, int.class, availability.getDayOfWeek(), availability.getStartTime(), availability.getEndTime());
             newAvailability = getAvailabilityById(availabilityId);
+
+            //Link the availability to the deal
+            jdbcTemplate.update("INSERT INTO deal_availability (deal_id, availability_id) VALUES (?, ?)", dealId, availabilityId);
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         } catch (DataIntegrityViolationException e) {
@@ -88,8 +91,8 @@ public class AvailabilityDAO {
 
     public Availability mapRowtoAvailability (SqlRowSet rowSet) {
         Availability availability = new Availability();
-        availability.setAvailabilityId("Unable to set availability id", rowSet.getInt("availability_id"));
-        availability.setDayOfWeek("Unable to set day of the week", rowSet.getInt("day_of_week"));
+        availability.setAvailabilityId(rowSet.getInt("availability_id"));
+        availability.setDayOfWeek(rowSet.getInt("day_of_week"));
         Time sqlStartTime = rowSet.getTime("start_time");
         if (sqlStartTime != null) {
             availability.setStartTime(sqlStartTime.toLocalTime());

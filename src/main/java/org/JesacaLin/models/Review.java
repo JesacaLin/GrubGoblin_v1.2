@@ -28,7 +28,7 @@ public class Review {
         return dealId;
     }
 
-    public void setDealId(String unableToSetDealId, int dealId) {
+    public void setDealId(int dealId) {
         this.dealId = dealId;
     }
 
@@ -36,7 +36,7 @@ public class Review {
         return stars;
     }
 
-    public void setStars(String unableToSetStarRating, double stars) {
+    public void setStars(double stars) {
         this.stars = stars;
     }
 

@@ -48,7 +48,7 @@ public class Place {
         return latitude;
     }
 
-    public void setLatitude(String unableToSetLatitude, double latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
@@ -56,7 +56,7 @@ public class Place {
         return longitude;
     }
 
-    public void setLongitude(String unableToSetLongitude, double longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
@@ -64,7 +64,7 @@ public class Place {
         return googleRating;
     }
 
-    public void setGoogleRating(String unableToSetGoogleRating, double googleRating) {
+    public void setGoogleRating(double googleRating) {
         this.googleRating = googleRating;
     }
 

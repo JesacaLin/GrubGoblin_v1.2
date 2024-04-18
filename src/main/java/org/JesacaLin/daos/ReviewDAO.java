@@ -1,7 +1,6 @@
 package org.JesacaLin.daos;
 
 import org.JesacaLin.exception.DaoException;
-import org.JesacaLin.models.Availability;
 import org.JesacaLin.models.Review;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -91,8 +90,8 @@ public class ReviewDAO {
     public Review mapRowToReview (SqlRowSet rowSet) {
         Review review = new Review();
         review.setReviewId("Unable to set review id", rowSet.getInt("review_id"));
-        review.setDealId("Unable to set deal id", rowSet.getInt("deal_id"));
-        review.setStars("Unable to set star rating", rowSet.getDouble("stars"));
+        review.setDealId(rowSet.getInt("deal_id"));
+        review.setStars(rowSet.getDouble("stars"));
         review.setReviewDescription(rowSet.getString("review_description"));
         return review;
     }

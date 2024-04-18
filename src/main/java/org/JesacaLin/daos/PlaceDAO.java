@@ -94,9 +94,9 @@ public class PlaceDAO {
         place.setPlaceId("Unable to set place id", rowSet.getInt("place_id"));
         place.setPlaceName(rowSet.getString("place_name"));
         place.setAddress(rowSet.getString("address"));
-        place.setLatitude("Unable to set latitude", rowSet.getDouble("latitude"));
-        place.setLongitude("Unable to set longitude", rowSet.getDouble("longitude"));
-        place.setGoogleRating("Unable to set Google rating", rowSet.getDouble("google_rating"));
+        place.setLatitude(rowSet.getDouble("latitude"));
+        place.setLongitude(rowSet.getDouble("longitude"));
+        place.setGoogleRating(rowSet.getDouble("google_rating"));
         return place;
     }
 }

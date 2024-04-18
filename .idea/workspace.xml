@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02ba0ce5-06ee-4820-9a5a-2e64d7c07c46" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/JesacaLin/UserInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/JesacaLin/models/FullDealDetails.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/JesacaLin/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/JesacaLin/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/JesacaLin/daos/DealDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/JesacaLin/daos/DealDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/JesacaLin/models/Deal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/JesacaLin/models/Deal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/JesacaLin/UserInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/JesacaLin/UserInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/JesacaLin/daos/PlaceDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/JesacaLin/daos/PlaceDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/JesacaLin/models/Place.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/JesacaLin/models/Place.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
