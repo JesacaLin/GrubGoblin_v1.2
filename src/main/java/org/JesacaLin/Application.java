@@ -31,17 +31,17 @@ public class Application {
     public static void mainMenu() {
         while (true) {
             String menu = ("""
-                    -------------------------------------------------
-                    |    GRUB GOBLIN: Your Food Deals Directory     |
-                    -------------------------------------------------
-                    |        Please select from the menu            |
-                    -------------------------------------------------
-                    | 1: Access Deals vault                    |
-                    | 2: Add a deal                                 |
-                    | 3: Update a deal                              |
-                    | 4: Delete a deal                              |
-                    | 5: Exit the program                           |
-                    -------------------------------------------------
+                -------------------------------------------------
+                |    GRUB GOBLIN: Your Food Deals Directory     |
+                -------------------------------------------------
+                |                  MAIN MENU                    |
+                -------------------------------------------------
+                | 1: Browse Deals Vault                         |
+                | 2: Contribute a Deal                          |
+                | 3: Modify an Existing Deal                    |
+                | 4: Remove a Deal                              |
+                | 5: Exit the Program                           |
+                -------------------------------------------------
                     """);
             String menuInput = UserInput.getStringInput(menu);
 
@@ -65,13 +65,13 @@ public class Application {
         while (true) {
             String dealMenu = ("""
                     -------------------------------------------------
-                    |        Deals Menu            |
+                    |        DEAL BROWSING MENU                     |
                     -------------------------------------------------
-                    | 1: See all deals in the directory               |
-                    | 2: Find deals for a specific day               |
-                    | 3: See all places with deals                   |
-                    | 4: See deals based on rating                 |
-                    | 5: Exit to main menu                           |
+                    | 1: View All Deals in the Directory            |
+                    | 2: Search Deals by Day                        |
+                    | 3: Explore Places with Deals                  |
+                    | 4: Discover Top-Rated Deals                   |
+                    | 5: Return to Main Menu                        |
                     -------------------------------------------------
                     """);
             String menuInput = UserInput.getStringInput(dealMenu);
@@ -94,61 +94,71 @@ public class Application {
     }
 
     public static void addDeal(){
+        //To do - convert the address to lat/long and set that as the values
+        //how to handle multiple days without retyping? after the user selects 1, I should ask: is this deal avilable multiple days?
+        //what about deals with no start time?
         while (true) {
             String steps = ("""
                     -------------------------------------------------
-                    |        Steps to adding a deal            |
+                    | Ready to contribute a deal? Let's go!         |
                     -------------------------------------------------
-                    | Step 1: Add the place               |
-                    | Step 2: Add details of the deal             |
-                    | Step 3: Add availability                   |
-                    | Step 4: Add a review                   |
-                    -------------------------------------------------
-                    | Enter "1" to start "5" to return to main menu  |
+                    | 1: Begin                                      |
+                    | 2: Return to Main Menu                        |
                     -------------------------------------------------
                     """);
             String menuInput = UserInput.getStringInput(steps);
             if (menuInput.equals("1")) {
-                //ADD PLACE
-                System.out.println("Let's start by adding details about the place");
+                //-------------------ADD PLACE-------------------
+                System.out.println("First, let's gather some information about the place.");
                 System.out.println();
                 Place newPlace = new Place();
-                newPlace.setPlaceName(UserInput.getStringInput("Name of the place?"));
-                newPlace.setAddress(UserInput.getStringInput("Address?"));
-                newPlace.setLatitude(UserInput.getDoubleInput("Latitude?"));
-                newPlace.setLongitude(UserInput.getDoubleInput("Longitude?"));
-                newPlace.setGoogleRating(UserInput.getDoubleInput("Google rating?"));
+                newPlace.setPlaceName(UserInput.getStringInput("What's the name of the place?"));
+
+                //-------------------CONVERTING ADDRESS-------------------
+                String address = UserInput.getStringInput("What's its address?");
+                try {
+                    double[] coordinateArray = AddressConverter.convertAddress(address);
+                    newPlace.setAddress(address);
+                    assert coordinateArray != null;
+                    newPlace.setLatitude(coordinateArray[0]);
+                    newPlace.setLongitude(coordinateArray[1]);
+                } catch (RuntimeException e) {
+                    System.err.println(e.getMessage());
+                    continue;
+                }
+                
+                newPlace.setGoogleRating(UserInput.getDoubleInput("What's its Google rating?"));
                 newPlace = placeDAO.createPlace(newPlace);
 
-                //ADD DEAL DETAILS
-                System.out.println("Now let's add details about the deal");
+                //-------------------ADD DEAL DETAILS-------------------
+                System.out.println("Great! Now let's add some details about the deal.");
                 System.out.println();
                 Deal newDeal = new Deal();
                 newDeal.setPlaceId(newPlace.getPlaceId());
-                newDeal.setTypeOfDeal(UserInput.getStringInput("What kind of deal? Enter 'food deal', 'drinks deal', 'grocery deal', 'other'"));
-                newDeal.setDealDescription(UserInput.getStringInput("Please describe the deal"));
+                newDeal.setTypeOfDeal(UserInput.getStringInput("What type of deal is it? (Options: 'food', 'drinks', 'grocery', 'other')"));
+                newDeal.setDealDescription(UserInput.getStringInput("Can you describe the deal?"));
                 newDeal = dealDAO.createDeal(newDeal);
 
-                //ADD AVAILABILITY
-                System.out.println("Next please add when this deal is available");
+                //-------------------ADD AVAILABILITY-------------------
+                System.out.println("Next, let's specify when this deal is available.");
                 System.out.println();
                 Availability newAvailability = new Availability();
-                newAvailability.setDayOfWeek(UserInput.getIntInput("Day of week? (Enter 1 for Monday, 2 for Tuesday, etc.)"));
-                newAvailability.setStartTime(UserInput.getTimeInput("Start time? (Enter in HH:MM format)"));
-                newAvailability.setEndTime(UserInput.getTimeInput("End time? (Enter in HH:MM format)"));
+                newAvailability.setDayOfWeek(UserInput.getIntInput("Which day of the week? (Enter 1 for Monday, 2 for Tuesday, etc."));
+                newAvailability.setStartTime(UserInput.getTimeInput("What's the start time? (Please enter in HH:MM format), if not applicable, enter 00:00"));
+                newAvailability.setEndTime(UserInput.getTimeInput("What's the end time? (Please enter in HH:MM format), if not applicable, enter 00:00"));
                 newAvailability = availabilityDAO.createAvailability(newAvailability, newDeal.getDealId());
 
 
-                //ADD REVIEW
-                System.out.println("Lastly, please add a review about the deal. Please enter 'null' if review is not available yet");
+                //-------------------ADD REVIEW-------------------
+                System.out.println("Finally, please enter your review of the deal.");
                 System.out.println();
                 Review newReview = new Review();
                 newReview.setDealId(newDeal.getDealId());
-                newReview.setStars(UserInput.getDoubleInput("Rate deal (Enter in 00:00 format, between 1.0 to 5.0)"));
-                newReview.setReviewDescription(UserInput.getStringInput("Please write a review for this deal"));
+                newReview.setStars(UserInput.getDoubleInput("How would you rate this deal? (Enter a number between 1.0 to 5.0)"));
+                newReview.setReviewDescription(UserInput.getStringInput("Please share your review. If review is pending, write 'null'"));
                 newReview = reviewDAO.createReview(newReview);
 
-            } else if (menuInput.equals("5")) {
+            } else if (menuInput.equals("2")) {
                 break;
             } else {
                 System.out.println("Please select a valid menu option!");

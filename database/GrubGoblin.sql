@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS place, deal, deal_availability, availability, review CASCAD
  CREATE TABLE availability (
     availability_id SERIAL PRIMARY KEY,
     day_of_week INT NOT NULL,
-    start_time TIME NOT NULL,
+    start_time TIME,
     end_time TIME
  );
 
