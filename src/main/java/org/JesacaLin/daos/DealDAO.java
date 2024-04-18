@@ -2,12 +2,14 @@ package org.JesacaLin.daos;
 
 import org.JesacaLin.exception.DaoException;
 import org.JesacaLin.models.Deal;
+import org.JesacaLin.models.FullDealDetails;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +34,7 @@ public class DealDAO {
         List<Deal> deals = new ArrayList<>();
         try {
             SqlRowSet rowSet = jdbcTemplate.queryForRowSet("SELECT * FROM deal");
+
             while(rowSet.next()) {
                 deals.add(mapRowToDeal(rowSet));
             }
@@ -40,6 +43,28 @@ public class DealDAO {
         }
         return deals;
     }
+
+    public List<FullDealDetails> getAllDealDetails() {
+        List<FullDealDetails> dealDetails = new ArrayList<>();
+        try {
+            SqlRowSet rowSet = jdbcTemplate.queryForRowSet("SELECT place_name, address, deal.type_of_deal, deal.deal_description, availability.day_of_week, availability.start_time, review.stars, review.review_description \n" +
+                    "FROM place\n" +
+                    "JOIN deal ON deal.place_id = place.place_id\n" +
+                    "JOIN deal_availability ON deal_availability.deal_id = deal.deal_id\n" +
+                    "JOIN availability ON availability.availability_id = deal_availability.availability_id\n" +
+                    "JOIN review ON review.deal_id = deal.deal_id\n" +
+                    "ORDER BY day_of_week");
+
+            while(rowSet.next()) {
+                dealDetails.add(mapRowToDealDetails(rowSet));
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return dealDetails;
+    }
+
+
 
     public Deal createDeal(Deal deal) {
         Deal newDeal = null;
@@ -89,10 +114,26 @@ public class DealDAO {
 
     public Deal mapRowToDeal (SqlRowSet rowSet) {
         Deal deal = new Deal();
-        deal.setDealId("Unable to set deal id", rowSet.getInt("deal_id"));
-        deal.setPlaceId("Unable to set place id", rowSet.getInt("place_id"));
+        deal.setDealId(rowSet.getInt("deal_id"));
+        deal.setPlaceId(rowSet.getInt("place_id"));
         deal.setTypeOfDeal(rowSet.getString("type_of_deal"));
         deal.setDealDescription((rowSet.getString("deal_description")));
         return deal;
+    }
+
+    public FullDealDetails mapRowToDealDetails (SqlRowSet rowSet) {
+        FullDealDetails dealDetails = new FullDealDetails();
+        dealDetails.setPlaceName(rowSet.getString("place_name"));
+        dealDetails.setAddress(rowSet.getString("address"));
+        dealDetails.setTypeOfDeal(rowSet.getString("type_of_deal"));
+        dealDetails.setDealDescription((rowSet.getString("deal_description")));
+        dealDetails.setDayOfWeek(rowSet.getInt("day_of_week"));
+        Time sqlStartTime = rowSet.getTime("start_time");
+        if (sqlStartTime != null) {
+            dealDetails.setStartTime(sqlStartTime.toLocalTime());
+        }
+        dealDetails.setStars(rowSet.getDouble("stars"));
+        dealDetails.setReviewDescription(rowSet.getString("review_description"));
+        return dealDetails;
     }
 }

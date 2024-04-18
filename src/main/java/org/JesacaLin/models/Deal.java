@@ -5,6 +5,7 @@ public class Deal {
     private int placeId;
     private String typeOfDeal;
     private String dealDescription;
+
     public Deal() {
     }
     public Deal(int dealId, int placeId, String typeOfDeal, String dealDescription) {
@@ -18,7 +19,7 @@ public class Deal {
         return dealId;
     }
 
-    public void setDealId(String unableToSetDealId, int dealId) {
+    public void setDealId(int dealId) {
         this.dealId = dealId;
     }
 
@@ -26,7 +27,7 @@ public class Deal {
         return placeId;
     }
 
-    public void setPlaceId(String unableToSetPlaceId, int placeId) {
+    public void setPlaceId(int placeId) {
         this.placeId = placeId;
     }
 
