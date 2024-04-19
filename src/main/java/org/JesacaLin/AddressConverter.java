@@ -2,12 +2,13 @@ package org.JesacaLin;
 import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
 import com.google.maps.model.GeocodingResult;
+import io.github.cdimascio.dotenv.Dotenv;
 
 public class AddressConverter {
-    //Need to restrict the api...
-    //Look up more methods in Google Maps Service library for java.
     //need to shut down the api after use.
-    private static final String API_Key = System.getenv("MY_GOOGLE_API_KEY");
+    private static final Dotenv DOTENV = Dotenv.load();
+    private static final String API_Key = DOTENV.get("MY_GOOGLE_API_KEY");
+    //private static final String API_Key = System.getenv("MY_GOOGLE_API_KEY");
     //GeoApiContext is an object that is used to interact with the google maps api, built with the api key and other methods.
     private static final GeoApiContext context = new GeoApiContext.Builder().apiKey(API_Key).maxRetries(3).build();
     public static double[] convertAddress(String address) {
@@ -26,6 +27,8 @@ public class AddressConverter {
             }
         } catch (Exception e) {
             throw new RuntimeException("Error converting address to coordinates: " + e.getMessage(), e);
+        } finally {
+            context.shutdown();
         }
     }
 }

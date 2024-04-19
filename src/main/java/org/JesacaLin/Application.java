@@ -7,6 +7,7 @@ import org.JesacaLin.daos.ReviewDAO;
 import org.JesacaLin.models.*;
 import org.apache.commons.dbcp2.BasicDataSource;
 
+import java.sql.SQLOutput;
 import java.util.List;
 
 public class Application {
@@ -109,7 +110,7 @@ public class Application {
             String menuInput = UserInput.getStringInput(steps);
             if (menuInput.equals("1")) {
                 //-------------------ADD PLACE-------------------
-                System.out.println("First, let's gather some information about the place.");
+                System.out.println("First, let's gather some information about the establishment.");
                 System.out.println();
                 Place newPlace = new Place();
                 newPlace.setPlaceName(UserInput.getStringInput("What's the name of the place?"));
@@ -126,7 +127,7 @@ public class Application {
                     System.err.println(e.getMessage());
                     continue;
                 }
-                
+
                 newPlace.setGoogleRating(UserInput.getDoubleInput("What's its Google rating?"));
                 newPlace = placeDAO.createPlace(newPlace);
 
@@ -143,7 +144,7 @@ public class Application {
                 System.out.println("Next, let's specify when this deal is available.");
                 System.out.println();
                 Availability newAvailability = new Availability();
-                newAvailability.setDayOfWeek(UserInput.getIntInput("Which day of the week? (Enter 1 for Monday, 2 for Tuesday, etc."));
+                newAvailability.setDayOfWeek(UserInput.getIntInput("Which day of the week? (Enter 1 for Monday, 2 for Tuesday, etc. If available all week, enter 8"));
                 newAvailability.setStartTime(UserInput.getTimeInput("What's the start time? (Please enter in HH:MM format), if not applicable, enter 00:00"));
                 newAvailability.setEndTime(UserInput.getTimeInput("What's the end time? (Please enter in HH:MM format), if not applicable, enter 00:00"));
                 newAvailability = availabilityDAO.createAvailability(newAvailability, newDeal.getDealId());
@@ -158,6 +159,12 @@ public class Application {
                 newReview.setReviewDescription(UserInput.getStringInput("Please share your review. If review is pending, write 'null'"));
                 newReview = reviewDAO.createReview(newReview);
 
+                System.out.println("You just added this deal to the vault:");
+                System.out.println(newPlace);
+                System.out.println(newDeal);
+                System.out.println(newAvailability);
+                System.out.println(newReview);
+
             } else if (menuInput.equals("2")) {
                 break;
             } else {
@@ -168,17 +175,35 @@ public class Application {
     public static void updateDeal(){
         while (true) {
             String update = ("""
-                    -------------------------------------------------
-                    |        What would you like to update?            |
-                    -------------------------------------------------
-                    | 1: Add details of the place               |
-                    | 2: Add details of the deal             |
-                    | 3: Add availability                   |
-                    -------------------------------------------------
-                    |        Enter "1" to start or "5" to exit           |
-                    -------------------------------------------------
-                    """);
+               -------------------------------------------------
+               |        What would you like to do next?        |
+               -------------------------------------------------
+               | 1: Update details of an existing place        |
+               | 2: Update details of an existing deal         |
+               | 3: Update availability information            |
+               | 4: Update details of an existing review       |
+               -------------------------------------------------
+               | Enter "1", "2", "3", or "4" to proceed        |
+               | Enter "6" to return to Main Menu              |
+               -------------------------------------------------
+               """);
             String menuInput = UserInput.getStringInput(update);
+            if (menuInput.equals("1")) {
+                List<Place> places = placeDAO.getAllPlaces();
+                if (!places.isEmpty()) {
+                    for (Place place : places) {
+                        System.out.println(place);
+                    }
+                } else {
+                    System.out.println("\n*** No results ***");
+                }
+                String userInput = UserInput.getStringInput("Please enter the id of the place you want to update.");
+                System.out.println("your selection " + userInput);
+            } else if (menuInput.equals("6")) {
+                break;
+            } else {
+                System.out.println("Please select a valid menu option!");
+            }
         }
     }
     public static void deleteDeal(){}
