@@ -72,7 +72,9 @@ public class Application {
                     | 2: Search Deals by Day                        |
                     | 3: Explore Places with Deals                  |
                     | 4: Discover Top-Rated Deals                   |
-                    | 5: Return to Main Menu                        |
+                    -------------------------------------------------
+                    | Enter "1", "2", "3", or "4" to proceed        |
+                    | Enter "5" to return to Main Menu              |
                     -------------------------------------------------
                     """);
             String menuInput = UserInput.getStringInput(dealMenu);
@@ -176,7 +178,7 @@ public class Application {
         while (true) {
             String update = ("""
                -------------------------------------------------
-               |        What would you like to do next?        |
+               |        What would you like to update?         |
                -------------------------------------------------
                | 1: Update details of an existing place        |
                | 2: Update details of an existing deal         |
@@ -197,8 +199,41 @@ public class Application {
                 } else {
                     System.out.println("\n*** No results ***");
                 }
-                String userInput = UserInput.getStringInput("Please enter the id of the place you want to update.");
-                System.out.println("your selection " + userInput);
+            System.out.println();
+            String id = UserInput.getStringInput("Please enter the id of the place you want to update.");
+
+            Place placeToUpdate = placeDAO.getPlaceById(Integer.parseInt(id));
+
+            String placeColumns = ("""
+               -------------------------------------------------
+               |    What column do you want to update?         |
+               -------------------------------------------------
+               | 1: Update place name                          |
+               | 2: Update Google Rating                       |
+               -------------------------------------------------
+               | Enter "1", or "2" to proceed             |
+               | Enter "3" to return to Main Menu              |
+               -------------------------------------------------
+               """);
+            String placeInput = UserInput.getStringInput(placeColumns);
+            switch(placeInput) {
+                case "1":
+                    String newPlaceName = UserInput.getStringInput("Enter new name");
+                    placeToUpdate.setPlaceName(newPlaceName);
+                    System.out.println("The place name was updated!");
+                    System.out.println(placeToUpdate);
+                    break;
+                case "2":
+                    double newRating = UserInput.getDoubleInput("Enter new Google rating");
+                    placeToUpdate.setGoogleRating(newRating);
+                    System.out.println("The Google rating was updated!");
+                    System.out.println(placeToUpdate);
+                    break;
+                case "3":
+                    break;
+                default:
+                    System.out.println("Please make a selection");
+                }
             } else if (menuInput.equals("6")) {
                 break;
             } else {
