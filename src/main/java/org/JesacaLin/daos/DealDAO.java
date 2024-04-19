@@ -47,13 +47,13 @@ public class DealDAO {
     public List<FullDealDetails> getAllDealDetails() {
         List<FullDealDetails> dealDetails = new ArrayList<>();
         try {
-            SqlRowSet rowSet = jdbcTemplate.queryForRowSet("SELECT place_name, address, deal.type_of_deal, deal.deal_description, availability.day_of_week, availability.start_time, review.stars, review.review_description \n" +
+            SqlRowSet rowSet = jdbcTemplate.queryForRowSet("SELECT deal.deal_id, place_name, address, deal.type_of_deal, deal.deal_description, availability.day_of_week, availability.start_time, review.stars, review.review_description \n" +
                     "FROM place\n" +
                     "JOIN deal ON deal.place_id = place.place_id\n" +
                     "JOIN deal_availability ON deal_availability.deal_id = deal.deal_id\n" +
                     "JOIN availability ON availability.availability_id = deal_availability.availability_id\n" +
                     "JOIN review ON review.deal_id = deal.deal_id\n" +
-                    "ORDER BY day_of_week");
+                    "ORDER BY deal_id");
 
             while(rowSet.next()) {
                 dealDetails.add(mapRowToDealDetails(rowSet));
@@ -123,6 +123,7 @@ public class DealDAO {
 
     public FullDealDetails mapRowToDealDetails (SqlRowSet rowSet) {
         FullDealDetails dealDetails = new FullDealDetails();
+        dealDetails.setDealId(rowSet.getInt("deal_id"));
         dealDetails.setPlaceName(rowSet.getString("place_name"));
         dealDetails.setAddress(rowSet.getString("address"));
         dealDetails.setTypeOfDeal(rowSet.getString("type_of_deal"));

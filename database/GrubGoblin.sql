@@ -53,9 +53,15 @@ INSERT INTO deal (place_id, type_of_deal, deal_description)
     VALUES
     -- DEAL 1
     (1, 'drinks', '$8 cocktails, 2 types'),
+    (1, 'drinks', '$8 cocktails, 2 types'),
+    (1, 'drinks', '$8 cocktails, 2 types'),
+    (1, 'drinks', '$8 cocktails, 2 types'),
+    (1, 'drinks', '$8 cocktails, 2 types'),
     -- DEAL 2
     (2, 'drinks', '$11 cocktails'),
+    (2, 'drinks', '$11 cocktails'),
     -- DEAL 3
+    (3, 'drinks', '50% off drinks'),
     (3, 'drinks', '50% off drinks'),
     -- DEAL 4
     (3, 'food', '2 course lunch set menu $25'),
@@ -66,48 +72,57 @@ INSERT INTO availability (day_of_week, start_time, end_time)
     VALUES
     -- DEAL 1
     (1, '17:00:00', '19:00:00'),
-    -- DEAL 1
+    -- DEAL 2
     (2, '17:00:00', '19:00:00'),
-    -- DEAL 1
-    (3, '17:00:00', '19:00:00'),
-    -- DEAL 1
-    (4, '17:00:00', '19:00:00'),
-    -- DEAL 1
-    (5, '17:00:00', '19:00:00'),
-    -- DEAL 2
-    (6, '17:00:00', '20:00:00'),
-    -- DEAL 2
-    (7, '17:00:00', '20:00:00'),
     -- DEAL 3
-    (5, '16:00:00', '18:00:00'),
+    (3, '17:00:00', '19:00:00'),
     -- DEAL 4
-    (1, '11:00:00', '14:00:00'),
-    -- DEAL 4
-    (5, '11:00:00', '14:00:00'),
+    (4, '17:00:00', '19:00:00'),
     -- DEAL 5
+    (5, '17:00:00', '19:00:00'),
+
+    -- DEAL 6
+    (6, '17:00:00', '20:00:00'),
+    -- DEAL 7
+    (7, '17:00:00', '20:00:00'),
+
+    -- DEAL 8
+    (5, '16:00:00', '18:00:00'),
+    -- DEAL 9
+    (1, '11:00:00', '14:00:00'),
+    -- DEAL 10
+    (5, '11:00:00', '14:00:00'),
+    -- DEAL 11
     (2, '16:00:00', '21:00:00');
 
 
 INSERT INTO deal_availability (deal_id, availability_id)
     VALUES
     ( 1, 1),
-    ( 1, 2),
-    ( 1, 3),
-    ( 1, 4),
-    ( 1, 5),
-    ( 2, 6),
-    ( 2, 7),
-    ( 3, 8),
-    ( 4, 9),
-    ( 4, 10),
-    ( 5, 11);
+    ( 2, 2),
+    ( 3, 3),
+    ( 4, 4),
+    ( 5, 5),
+    ( 6, 6),
+    ( 7, 7),
+    ( 8, 8),
+    ( 9, 9),
+    ( 10, 10),
+    ( 11, 11);
+
 
 INSERT INTO review ( deal_id, stars,review_description)
     VALUES
     (1, 3.9, 'The happy hour drinks were ok, their full price cocktails are much better!'),
-    (2, 4.5, 'Solid cocktails and friendly service. Wish it was a dollar or two less. The charcuterie is worth getting.'),
-    (3, 3.0, 'Good place to get a quick drink if you need to rest while shopping, nothing to write home about.' ),
-    (4, 3.0, 'Very large portions so the deal is worth it!'),
-    (5, 4.0, 'Love the vibe here, good place for drinks with friends. Drinks are STRONG!');
+    (2, 3.9, 'The happy hour drinks were ok, their full price cocktails are much better!'),
+    (3, 3.9, 'The happy hour drinks were ok, their full price cocktails are much better!'),
+    (4, 3.9, 'The happy hour drinks were ok, their full price cocktails are much better!'),
+    (5, 3.9, 'The happy hour drinks were ok, their full price cocktails are much better!'),
+    (6, 4.5, 'Solid cocktails and friendly service. Wish it was a dollar or two less. The charcuterie is worth getting.'),
+    (7, 4.5, 'Solid cocktails and friendly service. Wish it was a dollar or two less. The charcuterie is worth getting.'),
+    (8, 3.0, 'Good place to get a quick drink if you need to rest while shopping, nothing to write home about.' ),
+    (9, 3.0, 'Good place to get a quick drink if you need to rest while shopping, nothing to write home about.' ),
+    (10, 3.0, 'Very large portions so the deal is worth it!'),
+    (11, 4.0, 'Love the vibe here, good place for drinks with friends. Drinks are STRONG!');
 	
 COMMIT;

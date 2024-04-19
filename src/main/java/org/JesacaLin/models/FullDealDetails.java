@@ -3,6 +3,7 @@ package org.JesacaLin.models;
 import java.time.LocalTime;
 
 public class FullDealDetails {
+    private int dealId;
     private String placeName;
     private String address;
     private String typeOfDeal;
@@ -15,7 +16,8 @@ public class FullDealDetails {
     public FullDealDetails() {
     }
 
-    public FullDealDetails(String placeName, String address, String typeOfDeal, String dealDescription, int dayOfWeek, LocalTime startTime, double stars, String reviewDescription) {
+    public FullDealDetails(int dealId, String placeName, String address, String typeOfDeal, String dealDescription, int dayOfWeek, LocalTime startTime, double stars, String reviewDescription) {
+        this.dealId = dealId;
         this.placeName = placeName;
         this.address = address;
         this.typeOfDeal = typeOfDeal;
@@ -24,6 +26,14 @@ public class FullDealDetails {
         this.startTime = startTime;
         this.stars = stars;
         this.reviewDescription = reviewDescription;
+    }
+
+    public int getDealId() {
+        return dealId;
+    }
+
+    public void setDealId(int dealId) {
+        this.dealId = dealId;
     }
 
     public String getPlaceName() {
@@ -92,15 +102,17 @@ public class FullDealDetails {
 
     @Override
     public String toString() {
-        return "Deal Detail {" +
-                " PLACE NAME = " + placeName +
-                ", ADDRESS = " + address +
-                ", TYPE OF DEAL = " + typeOfDeal +
-                ", DEAL DESCRIPTION = " + dealDescription +
-                ", DAY OF THE WEEK = " + dayOfWeek +
-                ", START TIME = " + startTime +
-                ", DEAL RATING = " + stars +
-                ", REVIEW = " + reviewDescription +
-                " }";
+        return "Deal Detail {\n" +
+                "   DEAL ID = " + dealId + ",\n" +
+                "   PLACE NAME = " + placeName + ",\n" +
+                "   ADDRESS = " + address + ",\n" +
+                "   TYPE OF DEAL = " + typeOfDeal + ",\n" +
+                "   DEAL DESCRIPTION = " + dealDescription + ",\n" +
+                "   DAY OF THE WEEK = " + dayOfWeek + ",\n" +
+                "   START TIME = " + startTime + ",\n" +
+                "   DEAL RATING = " + stars + ",\n" +
+                "   REVIEW = " + reviewDescription + "\n" +
+                "}";
     }
+
 }
