@@ -200,9 +200,9 @@ public class Application {
                     System.out.println("\n*** No results ***");
                 }
             System.out.println();
-            String id = UserInput.getStringInput("Please enter the id of the place you want to update.");
+            int id = UserInput.getIntInput("Please enter the id of the place you want to update.");
 
-            Place placeToUpdate = placeDAO.getPlaceById(Integer.parseInt(id));
+            Place placeToUpdate = placeDAO.getPlaceById(id);
 
             String placeColumns = ("""
                -------------------------------------------------
@@ -241,6 +241,46 @@ public class Application {
             }
         }
     }
-    public static void deleteDeal(){}
+    public static void deleteDeal(){
+        while (true) {
+            String delete = ("""
+               -------------------------------------------------
+               |        What would you like to delete?         |
+               -------------------------------------------------
+               | 1: Delete an existing place                   |
+               | 2: Delete an existing deal                    |
+               -------------------------------------------------
+               | Enter "1", or "2" to proceed        |
+               | Enter "3" to return to Main Menu              |
+               -------------------------------------------------
+               """);
+            String menuInput = UserInput.getStringInput(delete);
+
+            if (menuInput.equals("1")) {
+                List<Place> places = placeDAO.getAllPlaces();
+                if (!places.isEmpty()) {
+                    for (Place place : places) {
+                        System.out.println(place);
+                    }
+                } else {
+                    System.out.println("\n*** No results ***");
+                }
+                System.out.println();
+                int id = UserInput.getIntInput("Please enter the id of the place you want to delete.");
+
+                int numDeleted = placeDAO.deletePlaceById(id);
+                if (numDeleted == 1) {
+                    System.out.println("Successfully deleted place");
+                } else {
+                    System.out.println("Place was NOT deleted");
+                }
+
+            } else if (menuInput.equals("3")) {
+                break;
+            } else {
+                System.out.println("Please select a valid menu option!");
+            }
+        }
+    }
 
 }
