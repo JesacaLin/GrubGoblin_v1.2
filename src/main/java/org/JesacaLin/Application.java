@@ -37,11 +37,13 @@ public class Application {
                 -------------------------------------------------
                 |                  MAIN MENU                    |
                 -------------------------------------------------
-                | 1: Browse Deals Vault                         |
-                | 2: Contribute a Deal                          |
-                | 3: Modify an Existing Deal                    |
-                | 4: Remove a Deal                              |
-                | 5: Exit the Program                           |
+                | 1: Browse deals vault                         |
+                | 2: Contribute a deal                          |
+                | 3: Modify an existing deal                    |
+                | 4: Remove a deal                              |
+                -------------------------------------------------
+                | Enter "1", "2", "3", or "4" to proceed        |
+                | Enter "0" to exit the program                 |
                 -------------------------------------------------
                     """);
             String menuInput = UserInput.getStringInput(menu);
@@ -54,7 +56,7 @@ public class Application {
                 updateDeal();
             } else if (menuInput.equals("4")) {
                 deleteDeal();
-            } else if (menuInput.equals("5")) {
+            } else if (menuInput.equals("0")) {
                 break;
             } else {
                 System.out.println("Please select a valid menu option!");
@@ -74,7 +76,7 @@ public class Application {
                     | 4: Discover Top-Rated Deals                   |
                     -------------------------------------------------
                     | Enter "1", "2", "3", or "4" to proceed        |
-                    | Enter "5" to return to Main Menu              |
+                    | Enter "0" to return to Main Menu              |
                     -------------------------------------------------
                     """);
             String menuInput = UserInput.getStringInput(dealMenu);
@@ -88,7 +90,7 @@ public class Application {
                 } else {
                     System.out.println("\n*** No results ***");
                 }
-            } else if (menuInput.equals("5")) {
+            } else if (menuInput.equals("0")) {
                 break;
             } else {
                 System.out.println("Please select a valid menu option!");
@@ -105,8 +107,8 @@ public class Application {
                     -------------------------------------------------
                     | Ready to contribute a deal? Let's go!         |
                     -------------------------------------------------
-                    | 1: Begin                                      |
-                    | 2: Return to Main Menu                        |
+                    | Enter "1" to begin                            |
+                    | Enter "0" to return to Main Menu              |
                     -------------------------------------------------
                     """);
             String menuInput = UserInput.getStringInput(steps);
@@ -161,13 +163,14 @@ public class Application {
                 newReview.setReviewDescription(UserInput.getStringInput("Please share your review. If review is pending, write 'null'"));
                 newReview = reviewDAO.createReview(newReview);
 
-                System.out.println("You just added this deal to the vault:");
-                System.out.println(newPlace);
-                System.out.println(newDeal);
-                System.out.println(newAvailability);
-                System.out.println(newReview);
+                System.out.println("\nYou just added this deal to the vault:\n" +
+                        newPlace + "\n" +
+                        newDeal + "\n" +
+                        newAvailability + "\n" +
+                        newReview + "\n");
 
-            } else if (menuInput.equals("2")) {
+
+            } else if (menuInput.equals("0")) {
                 break;
             } else {
                 System.out.println("Please select a valid menu option!");
@@ -180,13 +183,13 @@ public class Application {
                -------------------------------------------------
                |        What would you like to update?         |
                -------------------------------------------------
-               | 1: Update details of an existing place        |
-               | 2: Update details of an existing deal         |
-               | 3: Update availability information            |
-               | 4: Update details of an existing review       |
+               | 1: Update an existing place                   |
+               | 2: Update an existing deal                    |
+               | 3: Update availability                        |
+               | 4: Update an existing review                  |
                -------------------------------------------------
                | Enter "1", "2", "3", or "4" to proceed        |
-               | Enter "6" to return to Main Menu              |
+               | Enter "0" to return to Main Menu              |
                -------------------------------------------------
                """);
             String menuInput = UserInput.getStringInput(update);
@@ -212,7 +215,7 @@ public class Application {
                | 2: Update Google Rating                       |
                -------------------------------------------------
                | Enter "1", or "2" to proceed             |
-               | Enter "3" to return to Main Menu              |
+               | Enter "0" to return to Main Menu              |
                -------------------------------------------------
                """);
             String placeInput = UserInput.getStringInput(placeColumns);
@@ -220,21 +223,21 @@ public class Application {
                 case "1":
                     String newPlaceName = UserInput.getStringInput("Enter new name");
                     placeToUpdate.setPlaceName(newPlaceName);
-                    System.out.println("The place name was updated!");
-                    System.out.println(placeToUpdate);
+                    System.out.println("\nThe place name was updated!\n" +
+                            placeToUpdate + "\n");
                     break;
                 case "2":
                     double newRating = UserInput.getDoubleInput("Enter new Google rating");
                     placeToUpdate.setGoogleRating(newRating);
-                    System.out.println("The Google rating was updated!");
-                    System.out.println(placeToUpdate);
+                    System.out.println("\nThe Google rating was updated!\n" +
+                            placeToUpdate + "\n");
                     break;
-                case "3":
+                case "0":
                     break;
                 default:
                     System.out.println("Please make a selection");
                 }
-            } else if (menuInput.equals("6")) {
+            } else if (menuInput.equals("0")) {
                 break;
             } else {
                 System.out.println("Please select a valid menu option!");
@@ -251,7 +254,7 @@ public class Application {
                | 2: Delete an existing deal                    |
                -------------------------------------------------
                | Enter "1", or "2" to proceed        |
-               | Enter "3" to return to Main Menu              |
+               | Enter "0" to return to Main Menu              |
                -------------------------------------------------
                """);
             String menuInput = UserInput.getStringInput(delete);
@@ -275,7 +278,7 @@ public class Application {
                     System.out.println("Place was NOT deleted");
                 }
 
-            } else if (menuInput.equals("3")) {
+            } else if (menuInput.equals("0")) {
                 break;
             } else {
                 System.out.println("Please select a valid menu option!");
