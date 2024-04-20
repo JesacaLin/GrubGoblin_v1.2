@@ -24,7 +24,7 @@ public class Place {
         return placeId;
     }
 
-    public void setPlaceId(String errorMessage, int placeId) {
+    public void setPlaceId(int placeId) {
         this.placeId = placeId;
     }
 

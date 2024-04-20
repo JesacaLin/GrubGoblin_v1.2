@@ -8,14 +8,15 @@ import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
+import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
 public class PlaceDAO {
     private JdbcTemplate jdbcTemplate;
-    public PlaceDAO(BasicDataSource basicDataSource) {
-        jdbcTemplate = new JdbcTemplate(basicDataSource);
+    public PlaceDAO(DataSource dataSource) {
+        jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     public Place getPlaceById(int id) {
@@ -60,7 +61,7 @@ public class PlaceDAO {
 
     public Place updatePlace(Place place) {
         Place updatedPlace = null;
-        String sql = "UPDATE place SET place_name = ?, address = ?, latitude = ?, longitude = ?, google_rating = ?";
+        String sql = "UPDATE place SET place_name = ?, address = ?, latitude = ?, longitude = ?, google_rating = ? WHERE place_id = ?";
 
         try {
             int numOfRows = jdbcTemplate.update(sql, place.getPlaceName(), place.getAddress(), place.getLatitude(), place.getLongitude(), place.getGoogleRating(), place.getPlaceId());
@@ -91,7 +92,7 @@ public class PlaceDAO {
 
     public Place mapRowToPlace (SqlRowSet rowSet) {
         Place place = new Place();
-        place.setPlaceId("Unable to set place id", rowSet.getInt("place_id"));
+        place.setPlaceId(rowSet.getInt("place_id"));
         place.setPlaceName(rowSet.getString("place_name"));
         place.setAddress(rowSet.getString("address"));
         place.setLatitude(rowSet.getDouble("latitude"));

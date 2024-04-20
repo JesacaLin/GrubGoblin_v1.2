@@ -8,8 +8,6 @@ public class AddressConverter {
     //need to shut down the api after use.
     private static final Dotenv DOTENV = Dotenv.load();
     private static final String API_Key = DOTENV.get("MY_GOOGLE_API_KEY");
-    //private static final String API_Key = System.getenv("MY_GOOGLE_API_KEY");
-    //GeoApiContext is an object that is used to interact with the google maps api, built with the api key and other methods.
     private static final GeoApiContext context = new GeoApiContext.Builder().apiKey(API_Key).maxRetries(3).build();
     public static double[] convertAddress(String address) {
         //Check if the API key is set
