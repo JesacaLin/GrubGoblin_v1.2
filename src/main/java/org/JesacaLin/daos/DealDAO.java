@@ -44,22 +44,6 @@ public class DealDAO {
         return deals;
     }
 
-//    public List<Deal> getAllDealsByString(String keyword) {
-//        List<Deal> deals = new ArrayList<>();
-//        String searchString = "%" + keyword + "%";
-//        try {
-//            SqlRowSet rowSet = jdbcTemplate.queryForRowSet("SELECT * from deal\n" +
-//                    "where deal_description LIKE ?", searchString);
-//
-//            while(rowSet.next()) {
-//                deals.add(mapRowToDeal(rowSet));
-//            }
-//        } catch (CannotGetJdbcConnectionException e) {
-//            throw new DaoException("Unable to connect to server or database", e);
-//        }
-//        return deals;
-//    }
-
     public List<FullDealDetails> getAllDealByKeyword(String keyword) {
         List<FullDealDetails> deals = new ArrayList<>();
         String searchString = "%" + keyword + "%";

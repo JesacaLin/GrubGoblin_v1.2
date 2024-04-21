@@ -95,7 +95,7 @@ public class Application {
 
             } else if (menuInput.equals("3")) {
                 String keywordInput = UserInput.getStringInput("Enter the keyword you would like to search for.");
-                
+
                 List<FullDealDetails> dealsByKeyword = dealDAO.getAllDealByKeyword(keywordInput);
                 if (!dealsByKeyword.isEmpty()) {
                     for (FullDealDetails deal : dealsByKeyword) {
@@ -114,9 +114,6 @@ public class Application {
     }
 
     public static void addDeal(){
-        //To do - convert the address to lat/long and set that as the values
-        //how to handle multiple days without retyping? after the user selects 1, I should ask: is this deal avilable multiple days?
-        //what about deals with no start time?
         while (true) {
             String steps = ("""
                     -------------------------------------------------

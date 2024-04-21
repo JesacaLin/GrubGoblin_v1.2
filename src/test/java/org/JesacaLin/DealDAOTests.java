@@ -19,10 +19,12 @@ public class DealDAOTests extends BaseDaoTests {
     public void setup() {
         this.dealDAO = new DealDAO(dataSource);
     }
+
     private static final Deal DEAL_1 = new Deal(1, 1, "drinks", "$8 cocktails, 2 types");
     private static final Deal DEAL_2 = new Deal(7, 2, "drinks", "$11 cocktails");
     private static final FullDealDetails FULL_DEAL_DETAILS_1 = new FullDealDetails(1,	"elsa",	"136 Atlantic Ave, Brooklyn, NY 11201",	"drinks",	"$8 cocktails, 2 types",	1, LocalTime.parse("17:00:00", DateTimeFormatter.ofPattern("HH:mm:ss")),	3.9, "The happy hour drinks were ok, their full price cocktails are much better!");
     private static final FullDealDetails FULL_DEAL_DETAILS_2 = new FullDealDetails(7,	"vine",	"81 Fleet Pl, Brooklyn, NY 11201",	"drinks",	"$11 cocktails",	7, LocalTime.parse("17:00:00", DateTimeFormatter.ofPattern("HH:mm:ss")),	4.5, "Solid cocktails and friendly service. Wish it was a dollar or two less. The charcuterie is worth getting.");
+
     @Test
     public void getDealById_returns_correct_deal() {
         Deal actualDeal = dealDAO.getDealById(1);
@@ -38,6 +40,14 @@ public class DealDAOTests extends BaseDaoTests {
         assertDealsMatch(DEAL_2, actualDeals.get(6));
     }
 
+    @Test
+    public void getAllDealByKeyword_returns_all_deals() {
+        List<FullDealDetails> actualDeals = dealDAO.getAllDealByKeyword("cocktails");
+        Assert.assertNotNull(actualDeals);
+        Assert.assertEquals(7, actualDeals.size());
+        assertFullDetailsMatch(FULL_DEAL_DETAILS_1, actualDeals.get(0));
+        assertFullDetailsMatch(FULL_DEAL_DETAILS_2, actualDeals.get(6));
+    }
     @Test
     public void getAllDealDetails_returns_all_deals() {
         List<FullDealDetails> actualDeals = dealDAO.getAllDealDetails();

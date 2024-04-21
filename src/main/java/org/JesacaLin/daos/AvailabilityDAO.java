@@ -8,14 +8,15 @@ import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
+import javax.sql.DataSource;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AvailabilityDAO {
     private JdbcTemplate jdbcTemplate;
-    public AvailabilityDAO(BasicDataSource basicDataSource) {
-        jdbcTemplate = new JdbcTemplate(basicDataSource);
+    public AvailabilityDAO(DataSource dataSource) {
+        jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     public Availability getAvailabilityById (int availabilityId) {
@@ -48,7 +49,7 @@ public class AvailabilityDAO {
             int availabilityId = jdbcTemplate.queryForObject(sql, int.class, availability.getDayOfWeek(), availability.getStartTime(), availability.getEndTime());
             newAvailability = getAvailabilityById(availabilityId);
 
-            //Link the availability to the deal
+            //-------------------LINK DEAL TO AVAILABILITY FOR LINKING TABLE-------------------
             jdbcTemplate.update("INSERT INTO deal_availability (deal_id, availability_id) VALUES (?, ?)", dealId, availabilityId);
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
