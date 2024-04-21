@@ -2,7 +2,6 @@ package org.JesacaLin;
 
 import org.JesacaLin.daos.AvailabilityDAO;
 import org.JesacaLin.models.Availability;
-import org.JesacaLin.models.Deal;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
