@@ -1,5 +1,4 @@
 package org.JesacaLin;
-import com.google.maps.model.PlaceEditorialSummary;
 import org.JesacaLin.daos.PlaceDAO;
 import org.JesacaLin.models.Place;
 import org.junit.Assert;

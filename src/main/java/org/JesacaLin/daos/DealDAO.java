@@ -3,20 +3,20 @@ package org.JesacaLin.daos;
 import org.JesacaLin.exception.DaoException;
 import org.JesacaLin.models.Deal;
 import org.JesacaLin.models.FullDealDetails;
-import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
+import javax.sql.DataSource;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DealDAO {
     private JdbcTemplate jdbcTemplate;
-    public DealDAO(BasicDataSource basicDataSource) {
-        jdbcTemplate = new JdbcTemplate(basicDataSource);
+    public DealDAO(DataSource dataSource) {
+        jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     public Deal getDealById (int dealId) {

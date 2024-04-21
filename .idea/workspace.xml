@@ -5,15 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02ba0ce5-06ee-4820-9a5a-2e64d7c07c46" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/JesacaLin/BaseDaoTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/JesacaLin/PlaceDAOTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/JesacaLin/TestingDatabaseConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/test-data.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/JesacaLin/DealDAOTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/JesacaLin/AddressConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/JesacaLin/AddressConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/JesacaLin/daos/PlaceDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/JesacaLin/daos/PlaceDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/JesacaLin/models/Place.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/JesacaLin/models/Place.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/JesacaLin/daos/DealDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/JesacaLin/daos/DealDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/JesacaLin/PlaceDAOTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/JesacaLin/PlaceDAOTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +38,7 @@
   "keyToString": {
     "Application.Application.executor": "Run",
     "Application.Main.executor": "Run",
+    "JUnit.DealDAOTests.executor": "Run",
     "JUnit.PlaceDAOTests.executor": "Run",
     "JUnit.PlaceDAOTests.getAllPlaces_returns_all_places.executor": "Run",
     "JUnit.PlaceDAOTests.getPlaceById_returns_correct_place.executor": "Debug",
@@ -66,7 +62,22 @@
       <recent name="org.JesacaLin" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PlaceDAOTests">
+  <component name="RunManager" selected="JUnit.DealDAOTests">
+    <configuration name="DealDAOTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="GrubGoblin_v3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.JesacaLin.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.JesacaLin" />
+      <option name="MAIN_CLASS_NAME" value="org.JesacaLin.DealDAOTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="PlaceDAOTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="GrubGoblin_v3" />
       <extension name="coverage">
@@ -116,6 +127,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DealDAOTests" />
         <item itemvalue="JUnit.PlaceDAOTests" />
         <item itemvalue="JUnit.PlaceDAOTests.updatePlace_updates_place" />
         <item itemvalue="JUnit.PlaceDAOTests.getAllPlaces_returns_all_places" />
