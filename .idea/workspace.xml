@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02ba0ce5-06ee-4820-9a5a-2e64d7c07c46" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/JesacaLin/DealDAOTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/JesacaLin/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/JesacaLin/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/JesacaLin/daos/DealDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/JesacaLin/daos/DealDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/JesacaLin/PlaceDAOTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/JesacaLin/PlaceDAOTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +61,20 @@
       <recent name="org.JesacaLin" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DealDAOTests">
+  <component name="RunManager" selected="Application.Application">
+    <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.JesacaLin.Application" />
+      <module name="GrubGoblin_v3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.JesacaLin.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DealDAOTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="GrubGoblin_v3" />
       <extension name="coverage">
@@ -127,6 +139,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Application" />
         <item itemvalue="JUnit.DealDAOTests" />
         <item itemvalue="JUnit.PlaceDAOTests" />
         <item itemvalue="JUnit.PlaceDAOTests.updatePlace_updates_place" />

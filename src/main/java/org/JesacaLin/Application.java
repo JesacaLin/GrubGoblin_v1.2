@@ -8,6 +8,7 @@ import org.JesacaLin.models.*;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -70,9 +71,9 @@ public class Application {
                     -------------------------------------------------
                     |        DEAL BROWSING MENU                     |
                     -------------------------------------------------
-                    | 1: View All Deals in the Directory            |
+                    | 1: View All Deals in the Directory (works)    |
                     | 2: Search Deals by Day                        |
-                    | 3: Explore Places with Deals                  |
+                    | 3: Search Deals by keyword (works)            |
                     | 4: Discover Top-Rated Deals                   |
                     -------------------------------------------------
                     | Enter "1", "2", "3", or "4" to proceed        |
@@ -90,6 +91,20 @@ public class Application {
                 } else {
                     System.out.println("\n*** No results ***");
                 }
+
+
+            } else if (menuInput.equals("3")) {
+                String keywordInput = UserInput.getStringInput("Enter the keyword you would like to search for.");
+                
+                List<FullDealDetails> dealsByKeyword = dealDAO.getAllDealByKeyword(keywordInput);
+                if (!dealsByKeyword.isEmpty()) {
+                    for (FullDealDetails deal : dealsByKeyword) {
+                        System.out.println(deal);
+                    }
+                } else {
+                    System.out.println("\n*** No results ***");
+                }
+
             } else if (menuInput.equals("0")) {
                 break;
             } else {
@@ -183,7 +198,7 @@ public class Application {
                -------------------------------------------------
                |        What would you like to update?         |
                -------------------------------------------------
-               | 1: Update an existing place                   |
+               | 1: Update an existing place (works)           |
                | 2: Update an existing deal                    |
                | 3: Update availability                        |
                | 4: Update an existing review                  |
@@ -211,8 +226,8 @@ public class Application {
                -------------------------------------------------
                |    What column do you want to update?         |
                -------------------------------------------------
-               | 1: Update place name                          |
-               | 2: Update Google Rating                       |
+               | 1: Update place name (works)                  |
+               | 2: Update Google Rating (works)               |
                -------------------------------------------------
                | Enter "1", or "2" to proceed             |
                | Enter "0" to return to Main Menu              |
@@ -250,7 +265,7 @@ public class Application {
                -------------------------------------------------
                |        What would you like to delete?         |
                -------------------------------------------------
-               | 1: Delete an existing place                   |
+               | 1: Delete an existing place (works)           |
                | 2: Delete an existing deal                    |
                -------------------------------------------------
                | Enter "1", or "2" to proceed        |

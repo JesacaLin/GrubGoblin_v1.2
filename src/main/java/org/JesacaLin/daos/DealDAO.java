@@ -44,6 +44,43 @@ public class DealDAO {
         return deals;
     }
 
+//    public List<Deal> getAllDealsByString(String keyword) {
+//        List<Deal> deals = new ArrayList<>();
+//        String searchString = "%" + keyword + "%";
+//        try {
+//            SqlRowSet rowSet = jdbcTemplate.queryForRowSet("SELECT * from deal\n" +
+//                    "where deal_description LIKE ?", searchString);
+//
+//            while(rowSet.next()) {
+//                deals.add(mapRowToDeal(rowSet));
+//            }
+//        } catch (CannotGetJdbcConnectionException e) {
+//            throw new DaoException("Unable to connect to server or database", e);
+//        }
+//        return deals;
+//    }
+
+    public List<FullDealDetails> getAllDealByKeyword(String keyword) {
+        List<FullDealDetails> deals = new ArrayList<>();
+        String searchString = "%" + keyword + "%";
+        try {
+            SqlRowSet rowSet = jdbcTemplate.queryForRowSet("SELECT deal.deal_id, place_name, address, deal.type_of_deal, deal.deal_description, availability.day_of_week, availability.start_time, review.stars, review.review_description \n" +
+                            "FROM place\n" +
+                            "JOIN deal ON deal.place_id = place.place_id\n" +
+                            "JOIN deal_availability ON deal_availability.deal_id = deal.deal_id\n" +
+                            "JOIN availability ON availability.availability_id = deal_availability.availability_id\n" +
+                            "JOIN review ON review.deal_id = deal.deal_id\n" +
+                            "WHERE deal_description LIKE ?", searchString);
+
+            while(rowSet.next()) {
+                deals.add(mapRowToDealDetails(rowSet));
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return deals;
+    }
+
     public List<FullDealDetails> getAllDealDetails() {
         List<FullDealDetails> dealDetails = new ArrayList<>();
         try {
